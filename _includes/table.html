@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Position</th>
+    <th>Minutes</th>
+    <th>Score</th>
+    <th>Tags</th>
+    <th>Popped</th>
+    <th>Grabs</th>
+    <th>Drops</th>
+    <th>Captures</th>
+    <th>Returns</th>
+    <th>Support</th>
+    <th>+/-</th>
+  </thead>
+  <tbody>
+    {% for i in (1..4) %}
+      {% include table_row.html %}
+    {% endfor %}
+  <tbody>
+</table>

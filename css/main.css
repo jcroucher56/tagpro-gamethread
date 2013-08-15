@@ -1,0 +1,19 @@
+table input {
+  width: 100%;
+}
+
+/* * * * * * * *
+ * Column Sizes
+ * * * * * * * */
+.col-name     { width: 8em; }
+.col-position { width: 6em; }
+.col-minutes  { width: 4em; }
+.col-score    { width: 4em; }
+.col-tags     { width: 3em; }
+.col-popped   { width: 3em; }
+.col-grabs    { width: 3em; }
+.col-drops    { width: 3em; }
+.col-captures { width: 3em; }
+.col-returns  { width: 3em; }
+.col-support  { width: 4em; }
+.col-posneg   { width: 3px; }

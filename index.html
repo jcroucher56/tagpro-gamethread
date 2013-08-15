@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<section class="main">
+  <form>
+    <fieldset>
+      <section class="general">
+        <label for="game">Game</label>
+          <input name="game" type="text" size="3">
+        <label for="map">Map</label>
+          <select name="map">
+            {% include maps.html %}
+          </select>
+        <label for="score">Score</label>
+          <input name="score" type="text"></input>
+        <label for="home">Home</label>
+          <select name="home">
+            {% include teams.html %}
+          </select>
+        <label for="Away">Away</label>
+          <select name="away">
+            {% include teams.html %}
+          </select>
+      </section>
+      <h3 class='home'>Home</h3>
+      {% include table.html %}
+      <h3 class='away'>Away</h3>
+      {% include table.html %}
+    </fieldset>
+  </form>
+  <pre id='raw-thread'></pre>
+</section>

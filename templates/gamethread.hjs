@@ -1,0 +1,15 @@
+**Game {{ game }} | {{ map }} | Score: {{ score }} | {{ home }} - {{ away }}**
+
+| {{ home }} | Position |  Minutes | Score | Tags | Popped | Grabs | Drops | Captures | Returns | Support | +/- |
+|--|--|--|--|--|--|--|--|--|--|--|--|
+{{#each hometeam}}| {{name}} | {{position}} | {{minutes}} | {{score}} | {{tags}} | {{popped}} | {{grabs}} | {{drops}} | {{captures}} | {{returns}} | {{support}} | {{posneg}} |
+{{/each}}
+
+| {{ away }} | Position |  Minutes | Score | Tags | Popped | Grabs | Drops | Captures | Returns | Support | +/- |
+|--|--|--|--|--|--|--|--|--|--|--|--|
+{{#each awayteam}}| {{name}} | {{position}} | {{minutes}} | {{score}} | {{tags}} | {{popped}} | {{grabs}} | {{drops}} | {{captures}} | {{returns}} | {{support}} | {{posneg}} |
+{{/each}}
+
+*Denotes MVP for Each Half
+DNF = Did Not Finish
+Comment your position played if you want it recorded
