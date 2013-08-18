@@ -15,7 +15,7 @@ $().ready(function() {
     var context = create_context();
     var markdown = template(context);
 
-    console.log(context)
+  //  console.log(context)
 
     // show the markdown results :P
     $('pre').html(markdown);
@@ -24,14 +24,8 @@ $().ready(function() {
 
   function create_context() {
     var context = {
-      firsthalf: {
-        hometeam: [], 
-        awayteam: []
-      },
-      secondhalf: {
-        hometeam: [], 
-        awayteam: []
-      }
+      hometeam: [],
+      awayteam: []
     }
 
     // Grab all the general stuff
@@ -39,34 +33,41 @@ $().ready(function() {
 
     // Grab Home team - .next is a hack
     $('.home').next().find('tr.first-half').each(function(i, el) {
-      var ctx = {};
-      assign_values(ctx, el);
-      if(Object.keys(ctx).length > 1)
-        context.firsthalf.hometeam.push(ctx);
+      var first = assign_values({}, el);
+      var second = assign_values({}, $(el).next())
+      var result = null;
+
+
+      if(Object.keys(first).length > 1 && Object.keys(second).length > 1) {
+        result = merge_values(first, second);
+      } else {
+        if(Object.keys(first).length > 1)
+          result = first;
+        if(Object.keys(second).length > 1)
+          result = second;
+      }
+
+      if(result)
+        context.hometeam.push(result);
     })
 
     // Grab Away team - .next is a hack
     $('.away').next().find('tr.first-half').each(function(i, el) {
-      var ctx = {};
-      assign_values(ctx, el);
-      if(Object.keys(ctx).length > 1)
-        context.firsthalf.awayteam.push(ctx);
-    })
+      var first = assign_values({}, el);
+      var second = assign_values({}, $(el).next())
+      var result = null;
 
-    // Grab Home team - .next is a hack
-    $('.home').next().find('tr.second-half').each(function(i, el) {
-      var ctx = {};
-      assign_values(ctx, el);
-      if(Object.keys(ctx).length > 1)
-        context.secondhalf.hometeam.push(ctx);
-    })
+      if(Object.keys(first).length > 1 && Object.keys(second).length > 1) {
+        result = merge_values(first, second);
+      } else {
+        if(Object.keys(first).length > 1)
+          result = first;
+        if(Object.keys(second).length > 1)
+          result = second;
+      }
 
-    // Grab Away team - .next is a hack
-    $('.away').next().find('tr.second-half').each(function(i, el) {
-      var ctx = {};
-      assign_values(ctx, el);
-      if(Object.keys(ctx).length > 1)
-        context.secondhalf.awayteam.push(ctx);
+      if(result)
+        context.awayteam.push(result);
     })
 
     return context;
@@ -79,6 +80,24 @@ $().ready(function() {
       if(value)
         context[key] = value;
     })
+    return context;
+  }
+
+  function merge_values(first, second) {
+    var result = {}
+    result.name = first.name;
+    result.position = first.position;
+    result.minutes = first.minutes;
+    result.score = parseInt(first.score, 10) + parseInt(second.score, 10)
+    result.tags = parseInt(first.tags, 10) + parseInt(second.tags, 10)
+    result.popped  = parseInt(first.popped, 10) + parseInt(second.popped, 10)
+    result.grabs = parseInt(first.grabs, 10) + parseInt(second.grabs, 10)
+    result.drops  = parseInt(first.drops, 10) + parseInt(second.drops, 10)
+    result.captures = parseInt(first.captures, 10) + parseInt(second.captures, 10)
+    result.returns = parseInt(first.returns, 10) + parseInt(second.returns, 10)
+    result.support = parseInt(first.support, 10) + parseInt(second.support, 10)
+    result.posneg = parseInt(first.posneg, 10) + parseInt(second.posneg, 10)
+    return result;
   }
 
   function load_template(src) {
