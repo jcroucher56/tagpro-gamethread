@@ -21,6 +21,12 @@ $().ready(function() {
     $('pre').html(markdown);
   })
 
+  $('input[type=button]').click(function() {
+    var $table = $(this).prev();
+    $table.find('tr.first-half').last().clone(true).appendTo($table);
+    $table.find('tr.second-half').last().clone(true).appendTo($table);
+  })
+
 
   function create_context() {
     var context = {
